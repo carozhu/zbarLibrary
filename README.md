@@ -1,4 +1,9 @@
 # zbarLibrary
+
+```
+compile 'com.carozhu:zbarLibrary:1.0.0'
+```
+
 > scan qrcode for enter. just such as :
 
 ``` java
@@ -26,4 +31,5 @@
                         }
                     }
 ```
+
 

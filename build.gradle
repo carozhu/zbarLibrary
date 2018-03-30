@@ -1,4 +1,29 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+
 
 android {
     compileSdkVersion 15
@@ -7,6 +32,8 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 8
+        versionCode 1
+        versionName "1.0"
     }
     sourceSets {
         main {
@@ -20,4 +47,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+publish {
+    userOrg = 'carozhu' //注册Bintray的用户名
+    groupId = 'com.carozhu'//组ID
+    artifactId = 'zbarLibrary'//组件标示 即Library name
+    publishVersion = '1.0.0'//版本
+    desc = 'use zbarLibrary for checking qrcode enter'
+    website = 'https://github.com/carozhu/zbarLibrary.git'//如果有上传GitHub可以填写URL
+
 }
